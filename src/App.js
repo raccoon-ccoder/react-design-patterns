@@ -1,24 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import { SplitScreen } from "./components/split-screen";
 
+const LeftSideComponent = ({ title }) => {
+  return <h2 style={{ backgroundColor: "red" }}>{title}</h2>;
+};
+
+const RightSideComponent = ({ title }) => {
+  return <h2 style={{ backgroundColor: "green" }}>{title}</h2>;
+};
+
+// 위 방법(props)보다 자식 요소를 하위 구성요소로 전달하는 방법이 훨씬 더 좋음
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <SplitScreen leftWidth={1} rightWidth={3}>
+      <LeftSideComponent title={"i am left"} />
+      <RightSideComponent title={"i am right"} />
+    </SplitScreen>
   );
 }
 
