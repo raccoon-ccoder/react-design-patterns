@@ -1,5 +1,6 @@
 import { BookInfo } from "./3-container/components/book-info";
 import { DatasourceLoader } from "./3-container/3-16.datasource/datasource-loader";
+import { DatasourceLoaderWithRender } from "./3-container/3-17.datasource-render/datasource-loader-with-render";
 import { UserInfo } from "./3-container/components/user-info";
 import axios from "axios";
 
@@ -11,12 +12,10 @@ const getDataFromServer = async (resourcUrl) => {
 function App() {
   return (
     <>
-      <DatasourceLoader
+      <DatasourceLoaderWithRender
         getData={() => getDataFromServer("/users/3")}
-        resourceName={"user"}
-      >
-        <UserInfo />
-      </DatasourceLoader>
+        render={(datasource) => <UserInfo user={datasource} />}
+      ></DatasourceLoaderWithRender>
       <DatasourceLoader
         getData={() => getDataFromServer("/books/3")}
         resourceName={"book"}
